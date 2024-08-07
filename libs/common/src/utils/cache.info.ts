@@ -1,7 +1,7 @@
-import { Constants } from "@multiversx/sdk-nestjs-common";
+import { Constants } from '@multiversx/sdk-nestjs-common';
 
 export class CacheInfo {
-  key: string = "";
+  key: string = '';
   ttl: number = Constants.oneSecond() * 6;
 
   static LastProcessedNonce(shardId: number): CacheInfo {
@@ -12,7 +12,21 @@ export class CacheInfo {
   }
 
   static Examples: CacheInfo = {
-    key: "examples",
+    key: 'examples',
     ttl: Constants.oneHour(),
   };
+
+  static CreatedOffers(address: string): CacheInfo {
+    return {
+      key: `createdOffers:${address}`,
+      ttl: Constants.oneHour(),
+    };
+  }
+
+  static WantedOffers(address: string): CacheInfo {
+    return {
+      key: `wantedOffers:${address}`,
+      ttl: Constants.oneHour(),
+    };
+  }
 }

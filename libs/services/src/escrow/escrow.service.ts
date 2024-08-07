@@ -8,8 +8,13 @@ import {
 import { Injectable } from '@nestjs/common';
 import abiRow from './nft-escrow.abi.json';
 import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
-import { CommonConfigService, NetworkConfigService } from '@libs/common';
+import {
+  CacheInfo,
+  CommonConfigService,
+  NetworkConfigService,
+} from '@libs/common';
 import BigNumber from 'bignumber.js';
+import { CacheService } from '@multiversx/sdk-nestjs-cache';
 
 @Injectable()
 export class EscrowService {
@@ -17,6 +22,7 @@ export class EscrowService {
 
   constructor(
     private readonly networkConfigService: NetworkConfigService,
+    private readonly cachingService: CacheService,
     readonly commonConfigService: CommonConfigService,
   ) {
     const abi = AbiRegistry.create(abiRow);
@@ -33,6 +39,14 @@ export class EscrowService {
   }
 
   public async getCreatedOffers(address: string): Promise<Offer[]> {
+    return this.cachingService.getOrSet(
+      CacheInfo.CreatedOffers(address).key,
+      async () => await this.getCreatedOffersRaw(address),
+      CacheInfo.CreatedOffers(address).ttl,
+    );
+  }
+
+  public async getCreatedOffersRaw(address: string): Promise<Offer[]> {
     const query = this.queriesController.createQuery({
       contract: this.networkConfigService.config.escrowContract,
       function: 'getCreatedOffers',
@@ -52,6 +66,14 @@ export class EscrowService {
   }
 
   public async getWantedOffers(address: string): Promise<Offer[]> {
+    return this.cachingService.getOrSet(
+      CacheInfo.WantedOffers(address).key,
+      async () => await this.getWantedOffersRaw(address),
+      CacheInfo.WantedOffers(address).ttl,
+    );
+  }
+
+  public async getWantedOffersRaw(address: string): Promise<Offer[]> {
     const query = this.queriesController.createQuery({
       contract: this.networkConfigService.config.escrowContract,
       function: 'getWantedOffers',
