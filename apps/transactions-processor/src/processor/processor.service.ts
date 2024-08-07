@@ -14,7 +14,6 @@ import {
 } from '@libs/common';
 import { AppConfigService } from '../config/app-config.service';
 import { ApiService } from '@multiversx/sdk-nestjs-http';
-import e from 'express';
 
 @Injectable()
 export class ProcessorService {
