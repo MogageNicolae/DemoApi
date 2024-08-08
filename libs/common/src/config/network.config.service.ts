@@ -11,17 +11,15 @@ export class NetworkConfigService {
   private readonly devnetConfig: NetworkConfig = {
     chainID: 'D',
     escrowContract:
-      'erd1qqqqqqqqqqqqqpgq9exchw6y7m8hz3sg7dcz3uwyjkf02fk2dy7s0xyuec',
+      'erd1qqqqqqqqqqqqqpgqr58j50m0zqkk7rwkt5ax4qlak5msm489dy7s2qp2fq',
   };
   private readonly testnetConfig: NetworkConfig = {
     chainID: 'T',
-    escrowContract:
-      '',
+    escrowContract: '',
   };
   private readonly mainnetConfig: NetworkConfig = {
     chainID: '1',
-    escrowContract:
-      '',
+    escrowContract: '',
   };
 
   public readonly config: NetworkConfig;
