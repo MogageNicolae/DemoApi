@@ -8,11 +8,12 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "build:all": "nest build api && nest build transactions-processor && nest build common",
+    "build:all": "nest build api && nest build transactions-processor && nest build events-notifie && nest build common",
     "build:infra": "npm run build:all && npm run copy-config-infra",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start:api": "cross-env NODE_APP=api npm run start",
     "start:transactions-processor": "cross-env NODE_APP=transactions-processor npm run start",
+    "start:events-notifier": "cross-env NODE_APP=events-notifier npm run start",
     "start": "npm run copy-config && npm run nest-start",
     "copy-config-infra": "mkdir -p dist/config && cp .multiversx/config/config.yaml dist/config/config.yaml && cp config/schema.yaml dist/config/schema.yaml",
     "copy-config": "mkdir -p ./apps/$NODE_APP/config && cp ./config/config.yaml ./apps/$NODE_APP/config/config.yaml && cp ./config/schema.yaml ./apps/$NODE_APP/config/schema.yaml",
@@ -27,6 +28,7 @@
     "generate-types": "mxnest schema types config/schema.yaml libs/common/src/entities/config.d.ts"
   },
   "dependencies": {
+    "@golevelup/nestjs-rabbitmq": "^5.3.0",
     "@multiversx/sdk-core": "^13.2.1",
     "@multiversx/sdk-nestjs-auth": "3.7.1",
     "@multiversx/sdk-nestjs-cache": "3.7.1",

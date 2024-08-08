@@ -17,6 +17,11 @@ export interface Config {
       port: number;
       maxLookBehind: number;
     };
+    eventsNotifier: {
+      url: string;
+      port: number;
+      queue: string;
+    };
   };
   libs: {
     common: {
