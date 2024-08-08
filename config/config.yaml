@@ -32,7 +32,7 @@ libs:
     nativeAuth:
       # maxExpirySeconds:
       acceptedOrigins:
-        - utils.multiversx.com
+        - https://utils.multiversx.com
         - devnet-rabbitmq.beaconx.app
     security:
       admins: []

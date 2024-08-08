@@ -1,11 +1,14 @@
-import { EscrowService } from "@libs/services/escrow/escrow.service";
-import { Body, Controller, Post, Query, Get } from "@nestjs/common";
+import { Body, Post, Query } from "@nestjs/common";
 import { CreateOfferRequest } from "@libs/entities/entities/create.offer.request";
 import { AcceptOfferRequest } from "@libs/entities/entities/accept.offer.request";
 import { CancelOfferRequest } from "@libs/entities/entities/cancel.offer.request";
 import { Offer } from '@libs/entities/entities/offer';
+import { EscrowService } from '@libs/services/escrow/escrow.service';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import {NativeAuth, NativeAuthGuard} from "@multiversx/sdk-nestjs-auth"
 
 @Controller()
+@UseGuards(NativeAuthGuard)
 export class EscrowController {
   constructor(private readonly escrowService: EscrowService) {}
 
@@ -34,16 +37,20 @@ export class EscrowController {
   }
 
   @Get('escrow/offers/created')
-  async getCreatedOffers(): Promise<Offer[]> {
+  async getCreatedOffers(
+    @NativeAuth('address') address: string
+  ): Promise<Offer[]> {
     return await this.escrowService.getCreatedOffers(
-      'erd13x29rvmp4qlgn4emgztd8jgvyzdj0p6vn37tqxas3v9mfhq4dy7shalqrx',
+      address,
     );
   }
 
   @Get('escrow/offers/wanted')
-  async getWantedOffers(): Promise<Offer[]> {
+  async getWantedOffers(
+    @NativeAuth('address') address: string
+  ): Promise<Offer[]> {
     return await this.escrowService.getWantedOffers(
-      'erd13x29rvmp4qlgn4emgztd8jgvyzdj0p6vn37tqxas3v9mfhq4dy7shalqrx',
+      address
     );
   }
 }
