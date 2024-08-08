@@ -4,9 +4,7 @@
   "sourceRoot": "apps/api/src",
   "compilerOptions": {
     "webpack": false,
-    "plugins": [
-      "@nestjs/swagger"
-    ],
+    "plugins": ["@nestjs/swagger"],
     "tsConfigPath": "apps/api/tsconfig.app.json"
   },
   "monorepo": true,
@@ -42,6 +40,25 @@
       "sourceRoot": "apps/transactions-processor/src",
       "compilerOptions": {
         "tsConfigPath": "apps/transactions-processor/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "../config/config.yaml",
+            "outDir": "./dist/config"
+          },
+          {
+            "include": "../config/schema.yaml",
+            "outDir": "./dist/config"
+          }
+        ]
+      }
+    },
+    "events-notifier": {
+      "type": "application",
+      "root": "apps/events-notifier",
+      "entryFile": "main",
+      "sourceRoot": "apps/events-notifier/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/events-notifier/tsconfig.app.json",
         "assets": [
           {
             "include": "../config/config.yaml",

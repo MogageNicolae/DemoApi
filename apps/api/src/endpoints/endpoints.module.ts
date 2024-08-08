@@ -1,13 +1,9 @@
-import { Module } from "@nestjs/common";
-import { DynamicModuleUtils } from "@libs/common";
-import { EscrowModule } from "./escrow/escrow.module";
+import { Module } from '@nestjs/common';
+import { DynamicModuleUtils } from '@libs/common';
+import { EscrowModule } from './escrow/escrow.module';
 
 @Module({
-  imports: [
-    EscrowModule
-  ],
-  providers: [
-    DynamicModuleUtils.getNestJsApiConfigService(),
-  ],
+  imports: [EscrowModule],
+  providers: [DynamicModuleUtils.getNestJsApiConfigService()],
 })
-export class EndpointsModule { }
+export class EndpointsModule {}

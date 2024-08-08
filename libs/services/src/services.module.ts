@@ -1,6 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { DatabaseModule } from '@libs/database';
-import { DynamicModuleUtils, NetworkConfigModule} from '@libs/common';
+import { DynamicModuleUtils, NetworkConfigModule } from '@libs/common';
 import { EscrowService } from './escrow/escrow.service';
 
 @Global()
@@ -10,11 +10,7 @@ import { EscrowService } from './escrow/escrow.service';
     DatabaseModule,
     DynamicModuleUtils.getCachingModule(),
   ],
-  providers: [
-    EscrowService,
-  ],
-  exports: [
-    EscrowService,
-  ],
+  providers: [EscrowService],
+  exports: [EscrowService],
 })
-export class ServicesModule { }
+export class ServicesModule {}

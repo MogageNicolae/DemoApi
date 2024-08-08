@@ -11,6 +11,10 @@ apps:
   transactionsProcessor:
     port: integer
     maxLookBehind: integer
+  eventsNotifier:
+    url: string
+    port: integer
+    queue: string
 libs:
   common:
     network:

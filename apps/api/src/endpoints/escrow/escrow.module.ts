@@ -1,14 +1,10 @@
-import { Module } from "@nestjs/common";
-import { EscrowController } from "./escrow.controller";
-import { ServicesModule } from "@libs/services";
+import { Module } from '@nestjs/common';
+import { EscrowController } from './escrow.controller';
+import { ServicesModule } from '@libs/services';
 
 @Module({
-    imports: [
-        ServicesModule
-    ],
-    controllers: [
-        EscrowController
-    ],
-    providers: []
+  imports: [ServicesModule],
+  providers: [],
+  controllers: [EscrowController],
 })
 export class EscrowModule {}

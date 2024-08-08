@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { configuration } from "./configuration";
+import { Injectable } from '@nestjs/common';
+import { configuration } from './configuration';
 
 export interface NetworkConfig {
   chainID: 'D' | 'T' | '1';
@@ -10,15 +10,16 @@ export interface NetworkConfig {
 export class NetworkConfigService {
   private readonly devnetConfig: NetworkConfig = {
     chainID: 'D',
-    escrowContract: 'erd1qqqqqqqqqqqqqpgq0gleu7dw80yp6r7ljyn2a3u4t5wwzksudy7sfjmg5y'
+    escrowContract:
+      'erd1qqqqqqqqqqqqqpgqr58j50m0zqkk7rwkt5ax4qlak5msm489dy7s2qp2fq',
   };
   private readonly testnetConfig: NetworkConfig = {
     chainID: 'T',
-    escrowContract: ''
+    escrowContract: '',
   };
   private readonly mainnetConfig: NetworkConfig = {
     chainID: '1',
-    escrowContract: ''
+    escrowContract: '',
   };
 
   public readonly config: NetworkConfig;

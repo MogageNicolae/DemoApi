@@ -12,9 +12,10 @@ import { UserRepository } from './repositories';
       useFactory: (configService: CommonConfigService) => ({
         uri: `mongodb://${configService.config.database.host}:${configService.config.database.port}`,
         dbName: configService.config.database.name,
-        user: configService.config.database.username,
-        pass: configService.config.database.password,
-        tlsAllowInvalidCertificates: configService.config.database.tlsAllowInvalidCertificates,
+        // user: configService.config.database.username,
+        // pass: configService.config.database.password,
+        tlsAllowInvalidCertificates:
+          configService.config.database.tlsAllowInvalidCertificates,
       }),
       inject: [CommonConfigService],
     }),
@@ -23,13 +24,7 @@ import { UserRepository } from './repositories';
       { name: User.name, schema: UserSchema },
     ]),
   ],
-  providers: [
-    TokenRepository,
-    UserRepository,
-  ],
-  exports: [
-    TokenRepository,
-    UserRepository,
-  ],
+  providers: [TokenRepository, UserRepository],
+  exports: [TokenRepository, UserRepository],
 })
-export class DatabaseModule { }
+export class DatabaseModule {}
