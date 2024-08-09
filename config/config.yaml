@@ -34,6 +34,7 @@ libs:
       acceptedOrigins:
         - https://utils.multiversx.com
         - devnet-rabbitmq.beaconx.app
+        - http://localhost:3001
     security:
       admins: []
     # rateLimiterSecret:
